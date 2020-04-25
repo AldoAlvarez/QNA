@@ -1,7 +1,7 @@
 ﻿using UnityEngine.UI;
 using UnityEngine;
 using System.Collections;
-using General;
+using AGAC.StandarizedTime;
 
 namespace QNA
 {
@@ -20,13 +20,13 @@ namespace QNA
         #endregion
 
         #region PUBLIC METHODS
-        public void UpdateResults(MinuteTime time,  int correct_answers)
+        public void UpdateResults(StandardTime time,  int correct_answers)
         {
             CorrectAnswers.text = correct_answers.ToString();
             TotalTime.text = time.ToString();
         }
 
-        public void UpdateTme(MinuteTime time)
+        public void UpdateTme(StandardTime time)
         {
             CurrentTime.text = time.ToString();
         }

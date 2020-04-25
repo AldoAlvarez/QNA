@@ -289,80 +289,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1377263769}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec1a56310bedd7447915bab8de6055da, type: 3}
+  m_Script: {fileID: 11500000, guid: 8581a84a11480474cb15cbee54c55574, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  highlight_duration: 2
-  ButtonSettings:
-    LabelColorSettings:
-    - Colors:
-      - {r: 0.5, g: 0.5, b: 0.5, a: 1}
-      - {r: 0, g: 1, b: 0, a: 1}
-      - {r: 1, g: 0, b: 0, a: 1}
-    - Colors:
-      - {r: 1, g: 1, b: 1, a: 1}
-      - {r: 0.4, g: 0.4, b: 0.4, a: 0.8}
-    editorFoldoutPerSetting: 0001
-    lastSelectedIndex: 1
-  UI:
-    QuestionLabelText: {fileID: 0}
-    AnswerButtons:
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    CurrentTime: {fileID: 0}
-    TotalTime: {fileID: 0}
-    CorrectAnswers: {fileID: 0}
-  OnFinishedEvaluationAction:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  testCreator:
-    TestsContainer:
-      all_tests:
-      - TestID: Sample Test
-        passingScore: 30
-        questions:
-        - AnswerValue: 10
-          questionText: This is sample question number 1. To get full credits, you
-            must mark as answer the question number.
-          correct_answer: 1
-          other_answers:
-          - 2
-          - 3
-        - AnswerValue: 10
-          questionText: This is sample question number 2. To get full credits, you
-            must mark as answer the question number.
-          correct_answer: 2
-          other_answers:
-          - 3
-          - 4
-        - AnswerValue: 10
-          questionText: This is sample question number 3. To get full credits, you
-            must mark as answer the question number.
-          correct_answer: 3
-          other_answers:
-          - 4
-          - 5
-        - AnswerValue: 10
-          questionText: This is sample question number 4. To get full credits, you
-            must mark as answer the question number.
-          correct_answer: 4
-          other_answers:
-          - 5
-          - 6
-        - AnswerValue: 10
-          questionText: This is sample question number 5. To get full credits, you
-            must mark as answer the question number.
-          correct_answer: 5
-          other_answers:
-          - 6
-          - 7
-    currentTest: 0
-    currentQuestion: 0
-  CurrentTestIndex: 0
-  SelectedTab: 3
+  Active: 1
+  TargetTime:
+    TimeValues: 2c00000019000000e8030000
+    displayed: 1
 --- !u!4 &1377263771
 Transform:
   m_ObjectHideFlags: 0

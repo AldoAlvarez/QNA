@@ -2,10 +2,12 @@
 using UnityEngine;
 using QNA.ButtonLabel;
 using QNA.ButtonLabel.Options;
-using General;
+using AGAC.StandarizedTime;
+using System.Threading;
 
 namespace QNA
 {
+    [RequireComponent(typeof(StandarizedTimer))]
     public class Evaluator : MonoBehaviour
     {
         #region UNITY METHODS
@@ -15,18 +17,18 @@ namespace QNA
             testsContainer = new TestsContainer();
             //testsContainer.CreateSampleTest();
             //TestLoader.LoadTest(out testsContainer);
+            evaluationTimer = GetComponent<StandarizedTimer>();
         }
 
         private void FixedUpdate()
         {
             if (!applying_test) return;
-            evaluationTimer.FixedUpdate();
-            UI.UpdateTme(evaluationTimer.timer);
+            UI.UpdateTme(evaluationTimer.GetCurrentTime());
         }
         #endregion
 
         #region VARIABLES
-        private MinuteTimer evaluationTimer = new MinuteTimer();
+        private StandarizedTimer evaluationTimer;
         [SerializeField] [Range(0, 5)] private int highlight_duration = 2;
 
         [SerializeField] private AnswerButtonSettings ButtonSettings = new AnswerButtonSettings();
@@ -52,7 +54,7 @@ namespace QNA
         public void ResetTest()
         {
             ClearButtons();
-            evaluationTimer.Reset();
+            evaluationTimer.Restart();
             correctly_answered_answers = 0;
             CurrentQuestionIndex = 0;
             can_answer = true;
@@ -134,7 +136,7 @@ namespace QNA
 
         private void EndEvaluation()
         {
-            UI.UpdateResults(evaluationTimer.timer, correctly_answered_answers);
+            UI.UpdateResults(evaluationTimer.GetCurrentTime(), correctly_answered_answers);
             OnFinishedEvaluationAction.Invoke();
         }
 
