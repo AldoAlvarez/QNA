@@ -38,50 +38,52 @@ namespace AGAC.StandarizedTime.Drawers
 
         private const int HeightToField = 0;
         private const int HeightToLabels = 20;
-
-        private GUIStyle AddTimeIcon;
-        private bool buttonIsPressed = false;
         #endregion
 
         #region PRIVATE METHODS
         private void DrawTimeValues(Rect position) 
         {
-            int maxTimeValue = StandardTimeVerifyer.GetMaximumTime(0);
+            position.height = 15;
             for (int value = 0; value < TimeValues.arraySize; ++value)
-            {            
-                float fieldHeight = 15;
-                DrawValueField(position, value, fieldHeight);
+            {
+                DrawValueField(position, value);
                 if (value < TimeValues.arraySize - 1)
-                    DrawTimeSeparation(position, value, fieldHeight);
-                DrawValueLabel(position, value, fieldHeight);
+                    DrawTimeSeparation(position, value);
+                DrawValueLabel(position, value);
             }
         }
 
-        private void DrawValueField(Rect position, int valueIndex, float fieldHeight) 
+        private void DrawValueField(Rect position, int valueIndex) 
         {
-            float positionX = position.x  + (60 * valueIndex);
-            Rect TimeValuePos = new Rect(positionX, position.y + HeightToField, 40, fieldHeight);
+            float positionX = position.x  + (50 * valueIndex);
+            float positionY = position.y + (HeightToField* valueIndex);
+            Rect TimeValuePos = new Rect(positionX, positionY, 36, position.height);
+
             int maxTimeValue = StandardTimeVerifyer.GetMaximumTime((StandardTimeValues)valueIndex);
             DrawTimeValueField(TimeValuePos, valueIndex, maxTimeValue);
         }
-        private void DrawValueLabel(Rect position, int valueIndex, float fieldHeight) 
+        private void DrawValueLabel(Rect position, int valueIndex) 
         {
-            float positionX = position.x + 8 + (60 * valueIndex);
-            Rect TimeValuePos = new Rect(positionX, position.y + HeightToLabels, 50, fieldHeight);
+            float positionX = position.x + 5 + (50 * valueIndex);
+            Rect TimeValuePos = new Rect(positionX, position.y + HeightToLabels, 50, position.height);
             DrawTimeValueLabel(TimeValuePos, valueIndex);
         }
 
-        private void DrawTimeSeparation(Rect position, int valueIndex, float labelHeight) 
+        private void DrawTimeSeparation(Rect position, int valueIndex) 
         {
             EditorGUIUtility.labelWidth = 100;
-            float positionX = position.x + 47 + (60 * valueIndex);
-            Rect newPos = new Rect(positionX, position.y, 50, labelHeight);
+            float positionX = position.x + 40 + (50 * valueIndex);
+            Rect newPos = new Rect(positionX, position.y, 10, position.height);
             EditorGUI.LabelField(newPos, new GUIContent(":"));
         }
         private void DrawTimeValueField(Rect position, int index, int maxValue) 
         {
             EditorGUIUtility.labelWidth = 0;
-            EditorGUI.IntSlider(position, TimeValues.GetArrayElementAtIndex(index), 0, maxValue, GUIContent.none);
+            int value = TimeValues.GetArrayElementAtIndex(index).intValue;
+            value = EditorGUI.IntField(position, value);
+            if (value > maxValue) value = maxValue;
+            else if (value < 0) value = 0;
+            TimeValues.GetArrayElementAtIndex(index).intValue = value;
         }
         private void DrawTimeValueLabel(Rect position, int valueIndex)
         {
@@ -92,14 +94,6 @@ namespace AGAC.StandarizedTime.Drawers
         {
             displayed = property.FindPropertyRelative("displayed");
             TimeValues = property.FindPropertyRelative("TimeValues");
-
-            AddTimeIcon = new GUIStyle();
-            AddTimeIcon.fontSize = 10;
-            AddTimeIcon.normal.background = (Texture2D)Resources.Load("button") as Texture2D;
-            AddTimeIcon.focused.background = (Texture2D)Resources.Load("button") as Texture2D;
-            AddTimeIcon.hover.background = (Texture2D)Resources.Load("button") as Texture2D;
-            AddTimeIcon.active.background = (Texture2D)Resources.Load("button") as Texture2D;
-            AddTimeIcon.fontStyle = FontStyle.Normal;
         }
         #endregion
     }

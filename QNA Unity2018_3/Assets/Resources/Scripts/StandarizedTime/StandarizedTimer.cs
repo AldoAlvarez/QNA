@@ -13,12 +13,13 @@ namespace AGAC.StandarizedTime
             if (timer <= 0)
                 finished = true;
             else if (timer > 0)
-                timer -= UnityEngine.Time.fixedDeltaTime;
+                timer -= Time.fixedDeltaTime;
         }
         #endregion
 
         #region VARIABLES
         public bool Active = true;
+
         public StandardTime TargetTime = new StandardTime(0, 1, 0);
         private float timer = 0f;
         private bool finished = false;
